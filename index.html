@@ -1,0 +1,2439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Da Landlord - Uganda's Premier Property Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #da7b45;
+            --secondary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-bg: #34495e;
+            --text-color: #333;
+            --border-color: #ddd;
+            --uganda-yellow: #fcd116;
+            --uganda-red: #e11b22;
+            --uganda-black: #000000;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Bar with Uganda colors */
+        .top-bar {
+            background: linear-gradient(135deg, var(--uganda-black) 0%, var(--uganda-red) 50%, var(--uganda-yellow) 100%);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-info span {
+            margin-right: 20px;
+        }
+
+        .contact-info i {
+            margin-right: 5px;
+            color: var(--uganda-yellow);
+        }
+
+        .user-actions a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+
+        .user-actions a:hover {
+            background: var(--uganda-yellow);
+            color: var(--uganda-black);
+        }
+
+        .user-greeting {
+            color: white;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .user-badge {
+            background: var(--uganda-yellow);
+            color: var(--uganda-black);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            color: var(--primary-color);
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo h1 span {
+            color: var(--uganda-red);
+            font-size: 14px;
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        .search-bar {
+            flex: 1;
+            display: flex;
+            max-width: 500px;
+            min-width: 300px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .search-bar button {
+            padding: 12px 25px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .search-bar button:hover {
+            background: var(--accent-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .post-ad-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--success-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .post-ad-btn:hover {
+            background: #219a52;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39,174,96,0.3);
+        }
+
+        .write-review-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--uganda-yellow);
+            color: var(--uganda-black);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .write-review-btn:hover {
+            background: #e5b800;
+            transform: translateY(-2px);
+        }
+
+        .my-properties-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .my-properties-btn:hover {
+            background: #1e2b37;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .main-nav {
+            background: white;
+            border-bottom: 2px solid var(--border-color);
+            padding: 10px 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-content h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--uganda-yellow);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 30px rgba(218,123,69,0.2);
+        }
+
+        .category-card i {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .category-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Properties Grid */
+        .properties-section {
+            padding: 40px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 8px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .property-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .property-card:hover .property-image img {
+            transform: scale(1.1);
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .badge-featured {
+            background: var(--uganda-yellow);
+            color: var(--uganda-black);
+        }
+
+        .badge-premium {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .property-actions {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 1;
+        }
+
+        .property-action-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .property-action-btn.edit {
+            color: var(--primary-color);
+        }
+
+        .property-action-btn.edit:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .property-action-btn.delete {
+            color: var(--danger-color);
+        }
+
+        .property-action-btn.delete:hover {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .property-info {
+            padding: 20px;
+        }
+
+        .property-title {
+            font-size: 20px;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .property-price {
+            font-size: 24px;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .price-ugx {
+            font-size: 14px;
+            color: #666;
+            font-weight: normal;
+        }
+
+        .property-location {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .property-location i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+
+        .property-features {
+            display: flex;
+            gap: 20px;
+            padding: 15px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+
+        .property-features span i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+
+        .property-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--light-bg);
+        }
+
+        .landlord-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .landlord-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .verified-badge {
+            color: #1da1f2;
+            font-size: 14px;
+        }
+
+        .rating {
+            color: var(--uganda-yellow);
+            font-size: 12px;
+        }
+
+        .property-footer-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .request-btn {
+            padding: 8px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .request-btn:hover {
+            background: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .review-property-btn {
+            padding: 8px 15px;
+            background: var(--uganda-yellow);
+            color: var(--uganda-black);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .review-property-btn:hover {
+            background: #e5b800;
+        }
+
+        /* My Properties Section */
+        .my-properties-section {
+            padding: 40px 0;
+            display: none;
+        }
+
+        .my-properties-section.active {
+            display: block;
+        }
+
+        .my-properties-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-to-home {
+            padding: 10px 20px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .back-to-home:hover {
+            background: #1e2b37;
+        }
+
+        /* Customer Reviews Section */
+        .reviews-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .reviews-section .section-title h2 {
+            color: white;
+        }
+
+        .reviews-section .section-title p {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .reviewer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--uganda-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--uganda-black);
+        }
+
+        .reviewer-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .reviewer-info .location {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .review-property-name {
+            font-size: 14px;
+            font-style: italic;
+            margin-top: 5px;
+            color: var(--uganda-yellow);
+        }
+
+        .review-rating {
+            color: var(--uganda-yellow);
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .review-text {
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .review-date {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        .delete-review {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--danger-color);
+            cursor: pointer;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .review-card:hover .delete-review {
+            opacity: 1;
+        }
+
+        /* Premium Banner */
+        .premium-banner {
+            background: linear-gradient(135deg, var(--primary-color), #f39c12);
+            border-radius: 20px;
+            padding: 60px;
+            margin: 60px 0;
+            color: white;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(218,123,69,0.3);
+        }
+
+        .banner-content h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .banner-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .premium-features {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .premium-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+        }
+
+        .premium-features i {
+            color: var(--uganda-yellow);
+        }
+
+        .subscribe-btn {
+            display: inline-block;
+            padding: 15px 50px;
+            background: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .subscribe-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--uganda-yellow);
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--uganda-yellow);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--uganda-yellow);
+            color: var(--uganda-black);
+            transform: translateY(-5px);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .payment-methods span {
+            background: white;
+            color: var(--uganda-black);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #4a5568;
+            color: #bdc3c7;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--danger-color);
+        }
+
+        .modal h2 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .rating-select {
+            display: flex;
+            gap: 10px;
+            font-size: 24px;
+            color: var(--uganda-yellow);
+            cursor: pointer;
+        }
+
+        .rating-select i {
+            transition: all 0.3s;
+        }
+
+        .rating-select i:hover,
+        .rating-select i.active {
+            transform: scale(1.2);
+            color: #e5b800;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-color);
+        }
+
+        .premium-warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .delete-confirm {
+            text-align: center;
+        }
+
+        .delete-confirm p {
+            margin: 20px 0;
+            font-size: 18px;
+        }
+
+        .delete-confirm-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .confirm-btn {
+            padding: 10px 30px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .confirm-btn.yes {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .confirm-btn.yes:hover {
+            background: #c0392b;
+        }
+
+        .confirm-btn.no {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .confirm-btn.no:hover {
+            background: #1e2b37;
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transform: translateX(400px);
+            transition: transform 0.3s;
+            z-index: 3000;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            border-left-color: var(--success-color);
+        }
+
+        .notification.error {
+            border-left-color: var(--danger-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h2 {
+                font-size: 32px;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .premium-features {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .premium-banner {
+                padding: 30px 20px;
+            }
+
+            .action-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone-alt"></i> +256 757557850</span>
+                    <span><i class="fas fa-envelope"></i> info@dalandlord.ug</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Uganda</span>
+                </div>
+                <div class="user-actions" id="userActions">
+                    <a href="#" onclick="openModal('loginModal')"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    <a href="#" onclick="openModal('registerModal')"><i class="fas fa-user-plus"></i> Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Da Landlord <span>Uganda's #1 Property Market</span></h1>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search properties in Uganda...">
+                    <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+                </div>
+                <div class="action-buttons" id="actionButtons">
+                    <a href="#" onclick="openPostModal()" class="post-ad-btn" id="postPropertyBtn">
+                        <i class="fas fa-plus-circle"></i> List Property
+                    </a>
+                    <a href="#" onclick="openReviewModal()" class="write-review-btn" id="writeReviewBtn">
+                        <i class="fas fa-star"></i> Write Review
+                    </a>
+                    <a href="#" onclick="showMyProperties()" class="my-properties-btn" id="myPropertiesBtn">
+                        <i class="fas fa-building"></i> My Properties
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#" class="active" onclick="showHome()">Home</a></li>
+                <li><a href="#" onclick="filterProperties('Houses')">Houses</a></li>
+                <li><a href="#" onclick="filterProperties('Land')">Land</a></li>
+                <li><a href="#" onclick="filterProperties('Commercial')">Commercial</a></li>
+                <li><a href="#" onclick="filterProperties('Apartments')">Apartments</a></li>
+                <li><a href="#" onclick="filterProperties('Featured')">Featured</a></li>
+                 <li><a href="#" onclick="filterProperties('Featured')">Hostels</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="heroSection">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Find Your Dream Property in Uganda</h2>
+                <p>Discover the best houses, land, and commercial properties across all districts in Uganda</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalProperties">0</div>
+                        <div class="stat-label">Properties Listed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalLandlords">0</div>
+                        <div class="stat-label">Verified Landlords</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalReviews">0</div>
+                        <div class="stat-label">Customer Reviews</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categoriesSection">
+        <div class="container">
+            <div class="section-title">
+                <h2>Browse by Category</h2>
+                <p>Find properties based on your specific needs and preferences</p>
+            </div>
+            <div class="categories-grid" id="categoriesGrid"></div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section class="properties-section" id="propertiesSection">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest Properties in Uganda</h2>
+                <div class="filter-tabs">
+                    <span class="filter-tab active" onclick="filterProperties('all')">All</span>
+                    <span class="filter-tab" onclick="filterProperties('For Sale')">For Sale</span>
+                    <span class="filter-tab" onclick="filterProperties('For Rent')">For Rent</span>
+                    <span class="filter-tab" onclick="filterProperties('Featured')">Featured</span>
+                </div>
+            </div>
+            <div class="properties-grid" id="propertiesGrid"></div>
+            <div style="text-align: center;">
+                <button class="post-ad-btn" onclick="loadMore()" style="background: var(--secondary-color);">Load More Properties</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Properties Section -->
+    <section class="my-properties-section" id="myPropertiesSection">
+        <div class="container">
+            <div class="my-properties-header">
+                <h2>My Properties</h2>
+                <button class="back-to-home" onclick="showHome()">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+            <div class="properties-grid" id="myPropertiesGrid"></div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="reviews-section" id="reviewsSection">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Real reviews from tenants and buyers across Uganda</p>
+            </div>
+            <div class="reviews-grid" id="reviewsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Premium Banner -->
+    <section class="container" id="premiumBanner">
+        <div class="premium-banner">
+            <div class="banner-content">
+                <h3>Become a Premium Landlord</h3>
+                <p>Start listing your properties and reach thousands of potential buyers and tenants across Uganda</p>
+                <ul class="premium-features">
+                    <li><i class="fas fa-check-circle"></i> Unlimited Listings</li>
+                    <li><i class="fas fa-check-circle"></i> Featured Placement</li>
+                    <li><i class="fas fa-check-circle"></i> Verified Badge</li>
+                    <li><i class="fas fa-check-circle"></i> Priority Support</li>
+                    <li><i class="fas fa-check-circle"></i> Analytics Dashboard</li>
+                </ul>
+                <p class="price-tag" style="font-size: 24px; margin-bottom: 20px;">UGX 50,000/month</p>
+                <a href="#" class="subscribe-btn" onclick="openModal('subscribeModal')">Subscribe Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Da Landlord Uganda</h3>
+                    <p>Uganda's most trusted property marketplace connecting landlords with quality tenants and buyers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Popular Cities</h3>
+                    <ul>
+                        <li><a href="#">Kampala</a></li>
+                        <li><a href="#">Jinja</a></li>
+                        <li><a href="#">Entebbe</a></li>
+                        <li><a href="#">Mbarara</a></li>
+                        <li><a href="#">Gulu</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Payment Methods</h3>
+                    <p>We accept:</p>
+                    <div class="payment-methods">
+                        <span>MTN Mobile Money</span>
+                        <span>Airtel Money</span>
+                        <span>credit card</span>
+                    </div>
+                    <p style="margin-top: 20px;"><i class="fas fa-phone-alt"></i> +256 757557850</p>
+                    <p><i class="fas fa-envelope"></i> support@dalandlord.ug</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Da Landlord Uganda. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login to Da Landlord</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+                <p style="text-align: center; margin-top: 15px;">
+                    Don't have an account? <a href="#" onclick="switchModal('loginModal', 'registerModal')">Register</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Create Account</h2>
+            <form onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="regPhone" placeholder="+256..." required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="regConfirmPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>Account Type</label>
+                    <select id="regType" required>
+                        <option value="landlord">Landlord </option>
+                        <option value="customer">Customer/Tenant </option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+                <p style="text-align: center; margin-top: 15px;">
+                    Already have an account? <a href="#" onclick="switchModal('registerModal', 'loginModal')">Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Post Property Modal -->
+    <div class="modal" id="postModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('postModal')">&times;</span>
+            <h2 id="postModalTitle">List Your Property</h2>
+            <div id="postModalMessage"></div>
+            <form onsubmit="handlePostProperty(event)">
+                <input type="hidden" id="propId" value="">
+                <div class="form-group">
+                    <label>Property Title</label>
+                    <input type="text" id="propTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Property Type</label>
+                    <select id="propType" required>
+                        <option value="House">House</option>
+                        <option value="Land">Land</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Commercial">Commercial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Purpose</label>
+                    <select id="propPurpose" required>
+                        <option value="For Sale">For Sale</option>
+                        <option value="For Rent">For Rent</option>
+                        <option value="For Lease">For Lease</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Price (UGX)</label>
+                    <input type="text" id="propPrice" placeholder="e.g., 850,000,000" required>
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" id="propLocation" placeholder="e.g.Gulu" required>
+                </div>
+                <div class="form-group">
+                    <label>District</label>
+                    <select id="propDistrict" required>
+                        <option value="Kampala">Kampala</option>
+                        <option value="Wakiso">Wakiso</option>
+                        <option value="Mukono">Mukono</option>
+                        <option value="Jinja">Jinja</option>
+                        <option value="Mbarara">Mbarara</option>
+                        <option value="Gulu">Gulu</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Bedrooms (if applicable)</label>
+                    <input type="number" id="propBedrooms">
+                </div>
+                <div class="form-group">
+                    <label>Bathrooms (if applicable)</label>
+                    <input type="number" id="propBathrooms">
+                </div>
+                <div class="form-group">
+                    <label>Size</label>
+                    <input type="text" id="propSize" placeholder="e.g., 400 sqm or 2 acres">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="propDescription" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="url" id="propImage" placeholder="https://example.com/image.jpg" required>
+                </div>
+                <button type="submit" class="submit-btn" id="postSubmitBtn">List Property</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Write Review Modal -->
+    <div class="modal" id="reviewModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('reviewModal')">&times;</span>
+            <h2>Write a Review</h2>
+            <div id="reviewModalMessage"></div>
+            <form onsubmit="handleWriteReview(event)">
+                <div class="form-group">
+                    <label>Select Property</label>
+                    
+                </div>
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="reviewName" required>
+                </div>
+                <div class="form-group">
+                    <label>Your Location</label>
+                    <input type="text" id="reviewLocation" placeholder="e.g., Kampala" required>
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="rating-select" id="ratingStars">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                    <input type="hidden" id="reviewRating" value="0">
+                </div>
+                <div class="form-group">
+                    <label>Your Review</label>
+                    <textarea id="reviewText" rows="4" placeholder="Share your experience with this property..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Subscribe Modal -->
+    <div class="modal" id="subscribeModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('subscribeModal')">&times;</span>
+            <h2>Become a Premium Landlord</h2>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h3 style="color: var(--primary-color); font-size: 36px;">UGX 50,000</h3>
+                <p>per month</p>
+            </div>
+            <div style="margin-bottom: 30px;">
+                <h4>Premium Benefits:</h4>
+                <ul style="list-style: none; margin-top: 15px;">
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success-color);"></i> Unlimited property listings</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success-color);"></i> Featured placement on homepage</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success-color);"></i> Verified landlord badge</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success-color);"></i> Priority customer support</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--success-color);"></i> Detailed analytics dashboard</li>
+                </ul>
+            </div>
+            <form onsubmit="handleSubscribe(event)">
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select id="paymentMethod" required>
+                        <option value="mtn">MTN Mobile Money</option>
+                        <option value="airtel">Airtel Money</option>
+                        <option value="card">Credit/Debit Card</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number (for Mobile Money)</label>
+                    <input type="tel" id="paymentPhone" placeholder="+256...">
+                </div>
+                <button type="submit" class="submit-btn">Subscribe Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Request Meeting Modal -->
+    <div class="modal" id="requestModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('requestModal')">&times;</span>
+            <h2>Request Site Visit</h2>
+            <form onsubmit="handleRequest(event)">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="requestName" required>
+                </div>
+                <div class="form-group">
+                    <label>Your Phone Number</label>
+                    <input type="tel" id="requestPhone" placeholder="+256..." required>
+                </div>
+                <div class="form-group">
+                    <label>Your Email</label>
+                    <input type="email" id="requestEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Date</label>
+                    <input type="date" id="requestDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Time</label>
+                    <input type="time" id="requestTime" required>
+                </div>
+                <div class="form-group">
+                    <label>Message to Landlord</label>
+                    <textarea id="requestMessage" rows="4" placeholder="Any specific questions?"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('deleteModal')">&times;</span>
+            <div class="delete-confirm">
+                <h2>Delete Property</h2>
+                <p>Are you sure you want to delete this property? This action cannot be undone.</p>
+                <div class="delete-confirm-buttons">
+                    <button class="confirm-btn yes" onclick="confirmDelete()">Yes, Delete</button>
+                    <button class="confirm-btn no" onclick="closeModal('deleteModal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // Data Storage
+        let properties = [];
+        let users = [];
+        let reviews = [];
+        let currentUser = null;
+        let currentPropertyId = null;
+        let propertyToDelete = null;
+        let propertyToEdit = null;
+        let selectedRating = 0;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSampleData();
+            loadProperties();
+            loadReviews();
+            updateStats();
+            setupEventListeners();
+            updateUIBasedOnUser();
+            showHome();
+        });
+
+       
+        // Load properties to grid
+        function loadProperties() {
+            const grid = document.getElementById('propertiesGrid');
+            if (!grid) return;
+
+            grid.innerHTML = properties.map(property => createPropertyCard(property, false)).join('');
+        }
+
+        // Load my properties
+        function loadMyProperties() {
+            const grid = document.getElementById('myPropertiesGrid');
+            if (!grid || !currentUser) return;
+
+            const myProperties = properties.filter(p => p.landlordId === currentUser.id);
+            grid.innerHTML = myProperties.map(property => createPropertyCard(property, true)).join('');
+        }
+
+        // Create property card HTML
+        function createPropertyCard(property, isOwner) {
+            const actionButtons = isOwner ? `
+                <div class="property-actions">
+                    <button class="property-action-btn edit" onclick="editProperty(${property.id})" title="Edit Property">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="property-action-btn delete" onclick="openDeleteModal(${property.id})" title="Delete Property">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            ` : '';
+
+            return `
+                <div class="property-card" data-id="${property.id}">
+                    <div class="property-image">
+                        <img src="${property.image}" alt="${property.title}">
+                        ${property.featured ? '<span class="property-badge badge-featured">Featured</span>' : ''}
+                        ${property.premium ? '<span class="property-badge badge-premium">Premium</span>' : ''}
+                        ${actionButtons}
+                    </div>
+                    <div class="property-info">
+                        <h3 class="property-title">${property.title}</h3>
+                        <div class="property-price">
+                            ${property.price}
+                            ${property.type === 'For Rent' ? '<span class="price-ugx">/month</span>' : ''}
+                        </div>
+                        <div class="property-location">
+                            <i class="fas fa-map-marker-alt"></i> ${property.location}
+                        </div>
+                        <div class="property-features">
+                            ${property.bedrooms ? `<span><i class="fas fa-bed"></i> ${property.bedrooms} Beds</span>` : ''}
+                            ${property.bathrooms ? `<span><i class="fas fa-bath"></i> ${property.bathrooms} Baths</span>` : ''}
+                            ${property.toilets ? `<span><i class="fas fa-toilet"></i> ${property.toilets} Toilets</span>` : ''}
+                            <span><i class="fas fa-vector-square"></i> ${property.area}</span>
+                        </div>
+                    </div>
+                    <div class="property-footer">
+                        <div class="landlord-info">
+                            <div class="landlord-avatar">${property.landlord.charAt(0)}</div>
+                            <span>${property.landlord}</span>
+                            ${property.verified ? '<i class="fas fa-check-circle verified-badge" title="Verified Landlord"></i>' : ''}
+                            <span class="rating"><i class="fas fa-star"></i> ${property.rating} (${property.reviewCount})</span>
+                        </div>
+                        <div class="property-footer-buttons">
+                            <button class="request-btn" onclick="openRequestModal(${property.id})">
+                                <i class="fas fa-handshake"></i> Meet
+                            </button>
+                            ${!isOwner ? `
+                                <button class="review-property-btn" onclick="openReviewForProperty(${property.id})">
+                                    <i class="fas fa-star"></i>
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load reviews
+        function loadReviews() {
+            const grid = document.getElementById('reviewsGrid');
+            if (!grid) return;
+
+            grid.innerHTML = reviews.map(review => createReviewCard(review)).join('');
+        }
+
+        // Create review card HTML
+        function createReviewCard(review) {
+            const canDelete = currentUser && currentUser.type === 'customer';
+            
+            return `
+                <div class="review-card" data-id="${review.id}">
+                    ${canDelete ? `<i class="fas fa-trash-alt delete-review" onclick="deleteReview(${review.id})" title="Delete review"></i>` : ''}
+                    <div class="review-header">
+                        <div class="reviewer-avatar">${review.avatar || review.name.charAt(0)}</div>
+                        <div class="reviewer-info">
+                            <h4>${review.name}</h4>
+                            <div class="location"><i class="fas fa-map-marker-alt"></i> ${review.location}</div>
+                            <div class="review-property-name">Property: ${review.propertyName}</div>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        ${Array(review.rating).fill('<i class="fas fa-star"></i>').join('')}
+                        ${Array(5 - review.rating).fill('<i class="far fa-star"></i>').join('')}
+                    </div>
+                    <p class="review-text">"${review.text}"</p>
+                    <div class="review-date">${review.date}</div>
+                </div>
+            `;
+        }
+
+        // Update statistics
+        function updateStats() {
+            document.getElementById('totalProperties').textContent = properties.length;
+            document.getElementById('totalLandlords').textContent = [...new Set(properties.map(p => p.landlord))].length;
+            document.getElementById('totalReviews').textContent = reviews.length;
+        }
+
+        // Load categories
+        function loadCategories() {
+            const categories = [
+                { name: 'Houses', icon: 'fa-home', count: properties.filter(p => p.category === 'Houses').length },
+                { name: 'Apartments', icon: 'fa-building', count: properties.filter(p => p.category === 'Apartments').length },
+                { name: 'Land', icon: 'fa-tree', count: properties.filter(p => p.category === 'Land').length },
+                { name: 'Commercial', icon: 'fa-store', count: properties.filter(p => p.category === 'Commercial').length },
+                { name: 'For Sale', icon: 'fa-tag', count: properties.filter(p => p.type === 'For Sale').length },
+                { name: 'For Rent', icon: 'fa-key', count: properties.filter(p => p.type === 'For Rent').length }
+            ];
+
+            const grid = document.getElementById('categoriesGrid');
+            if (grid) {
+                grid.innerHTML = categories.map(cat => `
+                    <div class="category-card" onclick="filterProperties('${cat.name}')">
+                        <i class="fas ${cat.icon}"></i>
+                        <h3>${cat.name}</h3>
+                        <p>${cat.count} Properties</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Filter properties
+        function filterProperties(filter) {
+            showHome();
+            
+            const tabs = document.querySelectorAll('.filter-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.textContent.includes(filter) || (filter === 'all' && tab.textContent === 'All')) {
+                    tab.classList.add('active');
+                }
+            });
+
+            let filtered = properties;
+            if (filter !== 'all') {
+                if (['Houses', 'Land', 'Apartments', 'Commercial'].includes(filter)) {
+                    filtered = properties.filter(p => p.category === filter);
+                } else if (filter === 'For Sale' || filter === 'For Rent' || filter === 'For Lease') {
+                    filtered = properties.filter(p => p.type === filter);
+                } else if (filter === 'Featured') {
+                    filtered = properties.filter(p => p.featured);
+                }
+            }
+
+            const grid = document.getElementById('propertiesGrid');
+            grid.innerHTML = filtered.map(property => createPropertyCard(property, false)).join('');
+            
+            showNotification(`Showing ${filtered.length} properties`, 'success');
+        }
+
+        // Load more properties
+        function loadMore() {
+            showNotification('Loading more properties...', 'success');
+        }
+
+        // Show home section
+        function showHome() {
+            document.getElementById('heroSection').style.display = 'block';
+            document.getElementById('categoriesSection').style.display = 'block';
+            document.getElementById('propertiesSection').style.display = 'block';
+            document.getElementById('myPropertiesSection').classList.remove('active');
+            document.getElementById('reviewsSection').style.display = 'block';
+            document.getElementById('premiumBanner').style.display = 'block';
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.textContent === 'Home') {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Show my properties
+        function showMyProperties() {
+            if (!currentUser) {
+                showNotification('Please login to view your properties', 'error');
+                openModal('loginModal');
+                return;
+            }
+            
+            if (currentUser.type !== 'landlord') {
+                showNotification('Only landlords can access this section', 'error');
+                return;
+            }
+            
+            document.getElementById('heroSection').style.display = 'none';
+            document.getElementById('categoriesSection').style.display = 'none';
+            document.getElementById('propertiesSection').style.display = 'none';
+            document.getElementById('myPropertiesSection').classList.add('active');
+            document.getElementById('reviewsSection').style.display = 'none';
+            document.getElementById('premiumBanner').style.display = 'none';
+            
+            loadMyProperties();
+        }
+
+        // Edit property
+        function editProperty(propertyId) {
+            if (!currentUser) {
+                showNotification('Please login to edit properties', 'error');
+                openModal('loginModal');
+                return;
+            }
+            
+            const property = properties.find(p => p.id === propertyId);
+            if (!property || property.landlordId !== currentUser.id) {
+                showNotification('You can only edit your own properties', 'error');
+                return;
+            }
+            
+            // Fill form with property data
+            document.getElementById('postModalTitle').textContent = 'Edit Property';
+            document.getElementById('postSubmitBtn').textContent = 'Update Property';
+            document.getElementById('propId').value = property.id;
+            document.getElementById('propTitle').value = property.title;
+            document.getElementById('propType').value = property.category;
+            document.getElementById('propPurpose').value = property.type;
+            document.getElementById('propPrice').value = property.price.replace('UGX ', '').replace('/month', '');
+            document.getElementById('propLocation').value = property.location;
+            document.getElementById('propDistrict').value = property.district;
+            document.getElementById('propBedrooms').value = property.bedrooms || '';
+            document.getElementById('propBathrooms').value = property.bathrooms || '';
+            document.getElementById('propSize').value = property.area;
+            document.getElementById('propDescription').value = property.description;
+            document.getElementById('propImage').value = property.image;
+            
+            document.getElementById('postModalMessage').innerHTML = '';
+            openModal('postModal');
+        }
+
+        // Open delete modal
+        function openDeleteModal(propertyId) {
+            if (!currentUser) {
+                showNotification('Please login to delete properties', 'error');
+                return;
+            }
+            
+            const property = properties.find(p => p.id === propertyId);
+            if (!property || property.landlordId !== currentUser.id) {
+                showNotification('You can only delete your own properties', 'error');
+                return;
+            }
+            
+            propertyToDelete = propertyId;
+            openModal('deleteModal');
+        }
+
+        // Confirm delete
+        function confirmDelete() {
+            if (propertyToDelete) {
+                const index = properties.findIndex(p => p.id === propertyToDelete);
+                if (index !== -1) {
+                    properties.splice(index, 1);
+                    
+                    // Also delete related reviews
+                    reviews = reviews.filter(r => r.propertyId !== propertyToDelete);
+                    
+                    showNotification('Property deleted successfully', 'success');
+                    closeModal('deleteModal');
+                    
+                    // Refresh views
+                    loadProperties();
+                    loadMyProperties();
+                    loadReviews();
+                    updateStats();
+                    loadCategories();
+                    
+                    propertyToDelete = null;
+                }
+            }
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            
+            // Reset post form if closing
+            if (modalId === 'postModal') {
+                document.getElementById('postModalTitle').textContent = 'List Your Property';
+                document.getElementById('postSubmitBtn').textContent = 'List Property';
+                document.getElementById('propId').value = '';
+                document.getElementById('postPropertyForm')?.reset();
+            }
+        }
+
+        function switchModal(closeId, openId) {
+            closeModal(closeId);
+            openModal(openId);
+        }
+
+        // Open post property modal
+        function openPostModal() {
+            if (!currentUser) {
+                showNotification('Please login to list a property', 'error');
+                openModal('loginModal');
+                return;
+            }
+            
+            if (currentUser.type !== 'landlord') {
+                showNotification('Only landlords can list properties', 'error');
+                return;
+            }
+            
+            // Reset form for new property
+            document.getElementById('postModalTitle').textContent = 'List Your Property';
+            document.getElementById('postSubmitBtn').textContent = 'List Property';
+            document.getElementById('propId').value = '';
+            document.getElementById('postPropertyForm')?.reset();
+            
+            document.getElementById('postModalMessage').innerHTML = '';
+            openModal('postModal');
+        }
+
+        // Open review modal
+        function openReviewModal() {
+            if (!currentUser) {
+                showNotification('Please login to write a review', 'error');
+                openModal('loginModal');
+                return;
+            }
+            
+            if (currentUser.type !== 'customer') {
+                showNotification('Only customers can write reviews', 'error');
+                return;
+            }
+            
+            // Populate property dropdown
+            const select = document.getElementById('reviewProperty');
+            select.innerHTML = '<option value="">Choose a property...</option>';
+            properties.forEach(prop => {
+                select.innerHTML += `<option value="${prop.id}">${prop.title} - ${prop.location}</option>`;
+            });
+            
+            // Reset rating
+            selectedRating = 0;
+            document.getElementById('reviewRating').value = '0';
+            document.querySelectorAll('.rating-select i').forEach(star => {
+                star.className = 'far fa-star';
+            });
+            
+            document.getElementById('reviewModalMessage').innerHTML = '';
+            openModal('reviewModal');
+        }
+
+        // Open review for specific property
+        function openReviewForProperty(propertyId) {
+            if (!currentUser) {
+                showNotification('Please login to write a review', 'error');
+                openModal('loginModal');
+                return;
+            }
+            
+            if (currentUser.type !== 'customer') {
+                showNotification('Only customers can write reviews', 'error');
+                return;
+            }
+            
+            const property = properties.find(p => p.id === propertyId);
+            if (property) {
+                const select = document.getElementById('reviewProperty');
+                select.innerHTML = `<option value="${property.id}">${property.title}</option>`;
+            }
+            
+            // Reset rating
+            selectedRating = 0;
+            document.getElementById('reviewRating').value = '0';
+            document.querySelectorAll('.rating-select i').forEach(star => {
+                star.className = 'far fa-star';
+            });
+            
+            document.getElementById('reviewModalMessage').innerHTML = '';
+            openModal('reviewModal');
+        }
+
+        function openRequestModal(propertyId) {
+            if (!currentUser) {
+                showNotification('Please login to request a meeting', 'error');
+                openModal('loginModal');
+                return;
+            }
+            currentPropertyId = propertyId;
+            openModal('requestModal');
+        }
+
+        // Handle login
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Find user (simulated)
+            const user = users.find(u => u.email === email);
+            
+            if (user) {
+                currentUser = user;
+                showNotification(`Welcome back, ${user.name}!`, 'success');
+                closeModal('loginModal');
+                updateUIBasedOnUser();
+            } else {
+                showNotification('Invalid email or password', 'error');
+            }
+        }
+
+        // Handle register
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const phone = document.getElementById('regPhone').value;
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirmPassword').value;
+            const type = document.getElementById('regType').value;
+            
+            if (password !== confirm) {
+                showNotification('Passwords do not match!', 'error');
+                return;
+            }
+            
+            // Check if user exists
+            if (users.find(u => u.email === email)) {
+                showNotification('Email already registered', 'error');
+                return;
+            }
+            
+            // Create new user
+            const newUser = {
+                id: users.length + 1,
+                name: name,
+                email: email,
+                phone: phone,
+                type: type,
+                premium: false
+            };
+            
+            users.push(newUser);
+            currentUser = newUser;
+            
+            showNotification('Registration successful! Welcome to Da Landlord!', 'success');
+            closeModal('registerModal');
+            updateUIBasedOnUser();
+        }
+
+        // Handle post property (create or update)
+        function handlePostProperty(event) {
+            event.preventDefault();
+            
+            if (!currentUser || currentUser.type !== 'landlord') {
+                showNotification('Only landlords can list properties', 'error');
+                closeModal('postModal');
+                return;
+            }
+            
+            const propertyId = document.getElementById('propId').value;
+            const isEditing = propertyId !== '';
+            
+            // Check if landlord has premium subscription for new properties
+            if (!isEditing && !currentUser.premium && properties.filter(p => p.landlordId === currentUser.id).length >= 1) {
+                document.getElementById('postModalMessage').innerHTML = 
+                    '<div class="premium-warning">You need a premium subscription to list more than 1 property. Please subscribe below.</div>';
+                return;
+            }
+            
+            // Get form values
+            const propertyData = {
+                title: document.getElementById('propTitle').value,
+                category: document.getElementById('propType').value,
+                type: document.getElementById('propPurpose').value,
+                price: 'UGX ' + document.getElementById('propPrice').value + (document.getElementById('propPurpose').value === 'For Rent' ? '/month' : ''),
+                location: document.getElementById('propLocation').value,
+                district: document.getElementById('propDistrict').value,
+                bedrooms: document.getElementById('propBedrooms').value || null,
+                bathrooms: document.getElementById('propBathrooms').value || null,
+                area: document.getElementById('propSize').value,
+                description: document.getElementById('propDescription').value,
+                image: document.getElementById('propImage').value,
+                landlord: currentUser.name,
+                landlordId: currentUser.id,
+                verified: false,
+                featured: currentUser.premium ? true : false,
+                premium: currentUser.premium || false
+            };
+            
+            if (isEditing) {
+                // Update existing property
+                const index = properties.findIndex(p => p.id === parseInt(propertyId));
+                if (index !== -1) {
+                    properties[index] = {
+                        ...properties[index],
+                        ...propertyData,
+                        id: parseInt(propertyId)
+                    };
+                    showNotification('Property updated successfully!', 'success');
+                }
+            } else {
+                // Create new property
+                const newProperty = {
+                    id: properties.length + 1,
+                    ...propertyData,
+                    rating: 0,
+                    reviewCount: 0
+                };
+                
+                properties.push(newProperty);
+                showNotification('Property listed successfully! It will be reviewed by our team.', 'success');
+            }
+            
+            closeModal('postModal');
+            
+            // Refresh views
+            loadProperties();
+            loadMyProperties();
+            loadCategories();
+            updateStats();
+        }
+
+        // Handle write review
+        function handleWriteReview(event) {
+            event.preventDefault();
+            
+            if (!currentUser || currentUser.type !== 'customer') {
+                showNotification('Only customers can write reviews', 'error');
+                closeModal('reviewModal');
+                return;
+            }
+            
+            const propertyId = parseInt(document.getElementById('reviewProperty').value);
+            const property = properties.find(p => p.id === propertyId);
+            
+            if (!property) {
+                showNotification('Please select a property', 'error');
+                return;
+            }
+            
+            const rating = parseInt(document.getElementById('reviewRating').value);
+            if (rating === 0) {
+                showNotification('Please select a rating', 'error');
+                return;
+            }
+            
+            const newReview = {
+                id: reviews.length + 1,
+                propertyId: propertyId,
+                propertyName: property.title,
+                name: document.getElementById('reviewName').value,
+                location: document.getElementById('reviewLocation').value,
+                avatar: currentUser.name.charAt(0) + (currentUser.name.split(' ')[1]?.charAt(0) || currentUser.name.charAt(1)),
+                rating: rating,
+                text: document.getElementById('reviewText').value,
+                date: 'Just now'
+            };
+            
+            reviews.unshift(newReview);
+            
+            // Update property rating
+            const propertyReviews = reviews.filter(r => r.propertyId === propertyId);
+            const avgRating = propertyReviews.reduce((sum, r) => sum + r.rating, 0) / propertyReviews.length;
+            property.rating = parseFloat(avgRating.toFixed(1));
+            property.reviewCount = propertyReviews.length;
+            
+            showNotification('Review submitted successfully! Thank you for your feedback.', 'success');
+            closeModal('reviewModal');
+            loadReviews();
+            loadProperties();
+            loadMyProperties();
+            updateStats();
+        }
+
+        // Delete review
+        function deleteReview(reviewId) {
+            if (!currentUser || currentUser.type !== 'customer') {
+                showNotification('Only customers can delete reviews', 'error');
+                return;
+            }
+            
+            const review = reviews.find(r => r.id === reviewId);
+            if (!review) return;
+            
+            const index = reviews.findIndex(r => r.id === reviewId);
+            if (index !== -1) {
+                reviews.splice(index, 1);
+                
+                // Update property rating
+                const property = properties.find(p => p.id === review.propertyId);
+                if (property) {
+                    const propertyReviews = reviews.filter(r => r.propertyId === property.id);
+                    if (propertyReviews.length > 0) {
+                        const avgRating = propertyReviews.reduce((sum, r) => sum + r.rating, 0) / propertyReviews.length;
+                        property.rating = parseFloat(avgRating.toFixed(1));
+                        property.reviewCount = propertyReviews.length;
+                    } else {
+                        property.rating = 0;
+                        property.reviewCount = 0;
+                    }
+                }
+                
+                showNotification('Review deleted successfully', 'success');
+                loadReviews();
+                loadProperties();
+                loadMyProperties();
+                updateStats();
+            }
+        }
+
+        // Handle subscribe
+        function handleSubscribe(event) {
+            event.preventDefault();
+            
+            if (!currentUser) {
+                showNotification('Please login to subscribe', 'error');
+                closeModal('subscribeModal');
+                openModal('loginModal');
+                return;
+            }
+            
+            if (currentUser.type !== 'landlord') {
+                showNotification('Only landlords can subscribe to premium', 'error');
+                closeModal('subscribeModal');
+                return;
+            }
+            
+            currentUser.premium = true;
+            showNotification('Subscription successful! You are now a premium landlord.', 'success');
+            closeModal('subscribeModal');
+            updateUIBasedOnUser();
+        }
+
+        // Handle request meeting
+        function handleRequest(event) {
+            event.preventDefault();
+            showNotification('Your request has been sent to the landlord. They will contact you soon.', 'success');
+            closeModal('requestModal');
+        }
+
+        // Logout
+        function logout() {
+            currentUser = null;
+            showNotification('Logged out successfully', 'success');
+            updateUIBasedOnUser();
+            showHome();
+        }
+
+        // Update UI based on user status
+        function updateUIBasedOnUser() {
+            const actions = document.getElementById('userActions');
+            const actionButtons = document.getElementById('actionButtons');
+            
+            if (currentUser) {
+                const badge = currentUser.type === 'landlord' ? 
+                    (currentUser.premium ? '👑 Premium Landlord' : '🏠 Landlord') : 
+                    '👤 Customer';
+                
+                actions.innerHTML = `
+                    <span class="user-greeting">Hi, ${currentUser.name.split(' ')[0]}</span>
+                    <span class="user-badge">${badge}</span>
+                    <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                `;
+                
+                // Update button visibility based on user type
+                if (currentUser.type === 'landlord') {
+                    actionButtons.innerHTML = `
+                        <a href="#" onclick="openPostModal()" class="post-ad-btn">
+                            <i class="fas fa-plus-circle"></i> List Property
+                        </a>
+                        <a href="#" onclick="showMyProperties()" class="my-properties-btn">
+                            <i class="fas fa-building"></i> My Properties
+                        </a>
+                    `;
+                } else {
+                    actionButtons.innerHTML = `
+                        <a href="#" onclick="openReviewModal()" class="write-review-btn">
+                            <i class="fas fa-star"></i> Write Review
+                        </a>
+                    `;
+                }
+            } else {
+                actions.innerHTML = `
+                    <a href="#" onclick="openModal('loginModal')"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    <a href="#" onclick="openModal('registerModal')"><i class="fas fa-user-plus"></i> Register</a>
+                `;
+                
+                actionButtons.innerHTML = `
+                    <a href="#" onclick="openPostModal()" class="post-ad-btn">
+                        <i class="fas fa-plus-circle"></i> List Property
+                    </a>
+                    <a href="#" onclick="openReviewModal()" class="write-review-btn">
+                        <i class="fas fa-star"></i> Write Review
+                    </a>
+                `;
+            }
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Setup rating stars
+        function setupRatingStars() {
+            const stars = document.querySelectorAll('.rating-select i');
+            stars.forEach(star => {
+                star.addEventListener('mouseenter', function() {
+                    const rating = parseInt(this.dataset.rating);
+                    highlightStars(rating);
+                });
+                
+                star.addEventListener('mouseleave', function() {
+                    highlightStars(selectedRating);
+                });
+                
+                star.addEventListener('click', function() {
+                    selectedRating = parseInt(this.dataset.rating);
+                    document.getElementById('reviewRating').value = selectedRating;
+                    highlightStars(selectedRating);
+                });
+            });
+        }
+
+        function highlightStars(rating) {
+            const stars = document.querySelectorAll('.rating-select i');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.className = 'fas fa-star';
+                } else {
+                    star.className = 'far fa-star';
+                }
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search functionality
+            document.getElementById('searchBtn').addEventListener('click', function() {
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+                const filtered = properties.filter(p => 
+                    p.title.toLowerCase().includes(searchTerm) ||
+                    p.location.toLowerCase().includes(searchTerm) ||
+                    p.district.toLowerCase().includes(searchTerm) ||
+                    p.landlord.toLowerCase().includes(searchTerm)
+                );
+                
+                showHome();
+                const grid = document.getElementById('propertiesGrid');
+                grid.innerHTML = filtered.map(property => createPropertyCard(property, false)).join('');
+                
+                if (filtered.length === 0) {
+                    showNotification('No properties found matching your search', 'error');
+                } else {
+                    showNotification(`Found ${filtered.length} properties`, 'success');
+                }
+            });
+
+            // Close modals when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.classList.remove('active');
+                    
+                    // Reset forms when closing
+                    if (event.target.id === 'postModal') {
+                        document.getElementById('postModalTitle').textContent = 'List Your Property';
+                        document.getElementById('postSubmitBtn').textContent = 'List Property';
+                        document.getElementById('propId').value = '';
+                    }
+                }
+            });
+        }
+
+        // Initialize categories on load
+        setTimeout(() => {
+            loadCategories();
+            setupRatingStars();
+        }, 100);
+    </script>
+</body>
+</html>
